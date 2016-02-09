@@ -1,0 +1,18 @@
+<ion-view view-title="Movies">
+  <ion-content>
+  <h2>Movies:</h2>
+<ion-slide-box on-slide-changed="slideHasChanged($index)">
+  <ion-slide ng-repeat="movie in movies">
+    <div class="box blue"><h1>{{movie.name}}</h></h1>
+<div style="width: 50%; align: center;">
+<div class="progress">
+<div style="height: 30px; width: {{progressPercent}}%; transition: width 0.1s; background: red;">
+</div>
+		<p><h4>Length: {{movie.movie_length}}</h4><h4>Freshness: {{movie.freshness}}</h4><h4>${{movie.price}}</h4><h4 ng-hide="movie.sold">Sell for: ${{movie.price/2|number:0}}</h4>
+		<button type="button" class="btn btn-primary" ng-show="movie.sold" ng-click="buy(movie.id,movie.name,movie.movie_length)">Buy</button>
+		<button type="button" class="btn btn-primary" ng-hide="movie.sold" ng-click="sell(movie.id)">Sell</button>	
+		<br><br>{{movie.name}}<br><br></p></div>
+  </ion-slide>
+</ion-slide-box>
+</ion-content>
+</ion-view>

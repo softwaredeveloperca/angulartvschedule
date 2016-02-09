@@ -1,0 +1,81 @@
+<ion-view cache-view="false" view-title="{{title}}">
+<ion-nav-title>
+{{title}}
+</ion-nav-title>
+<ion-content>
+  <h2>Schedule</h2>
+<div class="row">
+  <div class="col col-100">
+<div ng-show="setTools">
+<a ng-click="closeTools()">Close</a><br>
+<div ng-show="warning_length" class="bar bar-header bar-energized">Selection will override existing programming</div>
+<label class="item item-input item-select">
+    <div class="ion-icon ion-search">
+       Movie
+    </div>
+    <select id="schedulemovies" ng-options="movie as movie.movie_name+' ('+movie.movie_length+')' for movie in available_movies" ng-model="selectMovie">	
+    </select> 
+  </label>
+
+<label class="item item-input item-select">
+    <div class="ion-icon ion-search">
+       Time
+    </div>
+    <select id=scheduletimes" ng-options="slot.slot as slot.name for slot in schedule.times" ng-model="selectTime">	
+    <option value=""></option>
+    </select> 
+  </label>{{selectTime}}
+
+<button ng-click="saveSchedule(selectTime, selectMovie.movie_id, selectMovie.movie_name)" class="btn btn-primary btn-form">Add</button>
+  </div>
+
+     <div class="row" ng-repeat="times in schedule.times">
+        <div class="col col-20">{{times.name}}</div>
+        <div class="col col-80">
+
+<div class="list" ng-hide="times.item_id">
+ <button ng-click="setSchedule(times.slot)" class="btn btn-primary">Empty</button>
+  
+  
+
+</div>
+
+
+					 <span ng-show="times.item_id">
+							{{times.item_name}} part: {{times.part_id}} <a ng-if="times.part_id === 1" ng-click="deleteMovie(times.item_id)" href="">Delete</a>
+						</span>
+	<!---					
+						 <div ng-hide="times.item_id1">
+<div>
+    <ion-select placeholder="Select Program" label-field="name" provider="available_movies" placeholder="Select programming"  ng-model="search_movies"/>
+  
+</div>
+     <div></div></div> 						
+						
+						
+ 		
+				</div>
+     </div>
+</div>
+<!---
+  <div class="col col-50">
+   <ion-list show-delete="shouldShowDelete"
+          show-reorder="shouldShowReorder"
+          can-swipe="listCanSwipe">
+
+		<ion-item ng-repeat="movie in movies" on-release="onRelease(movie.id)" on-drag="onDrag(movie.id)">
+		 <ion-option-button class="button-positive"
+                       ng-click="share(item)">
+      Share
+    </ion-option-button>
+ 	{{movie.name}}
+		</ion-item>
+	</ion-list>
+	</div>
+</div>
+
+-->
+</ion-content>
+</ion-view> <script id="popup-template.html" type="text/ng-template">
+      <input ng-model="data.wifi" type="text" placeholder="Password">
+    </script>
